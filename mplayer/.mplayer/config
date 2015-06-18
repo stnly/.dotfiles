@@ -1,0 +1,13 @@
+# Write your default config options here!
+# Set video driver.
+vo=xv
+
+# Use double-buffering. (Recommended for xv with SUB/OSD usage)
+double=yes
+
+cache=20480                # set the TOTAL cache size
+cache-min=25              # fill 10% of TOTAL cache before playback start
+autosync=30               # sync up video/audio by adjusting the algorithm
+
+[gnome-mplayer]
+msglevel=all=5

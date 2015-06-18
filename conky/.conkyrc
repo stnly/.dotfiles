@@ -1,0 +1,83 @@
+
+background yes
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type override
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 200
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_right
+gap_x 5
+gap_y 50
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+text_buffer_size 1024
+
+TEXT
+${font inconsolata:bold:size=9}SYSTEM ${hr 2}
+${font inconsolata:medium:size=9}$sysname $kernel $alignr $machine
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+Battery: $alignr${battery_percent BAT0}% 
+File System: $alignr${fs_type}
+
+#${font sans-serif:bold:size=8}BATTERY ${hr 2}
+#${font sans-serif:medium:size=8}Status: $battery 
+#$battery_bar
+${font inconsolata:bold:size=9}PROCESSORS ${hr 2}
+${font inconsolata:medium:size=9}CPU: $alignr Intel Core i7-2620
+${font inconsolata:medium:size=9}CPU Temp: $alignr${hwmon temp 1}°C
+${font inconsolata:medium:size=9}CPU: $alignr${cpu cpu0}% 
+${font inconsolata:medium:size=9}${cpugraph cpu0}
+CPU1: ${cpu cpu1}%$alignr${cpubar cpu1 6,134}
+CPU2: ${cpu cpu2}%$alignr${cpubar cpu2 6,134}
+CPU3: ${cpu cpu3}%$alignr${cpubar cpu3 6,134}
+CPU4: ${cpu cpu4}%$alignr${cpubar cpu4 6,134}
+#${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'}
+
+${font inconsolata:bold:size=9}MEMORY ${hr 2}
+${font inconsolata:medium:size=9}RAM $alignc $mem / $memmax $alignr $memperc%
+$membar
+
+${font inconsolata:bold:size=9}DISKS ${hr 2}
+${font inconsolata:medium:size=9}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
+${fs_bar /}
+#SWAP $alignc ${swap} / ${swapmax} $alignr ${swapperc}%
+#${swapbar}
+${font inconsolata:medium:size=9}/home $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /home}%
+${fs_bar /home}
+
+${font inconsolata:bold:size=9}TOP PROCESSES ${hr 2}
+${font inconsolata:medium:size=9}$processes processes ($running_processes running)
+NAME $alignr PID    CPU
+${top name 1} $alignr ${top pid 1} ${top cpu 1}
+${top name 2} $alignr ${top pid 2} ${top cpu 2}
+${top name 3} $alignr ${top pid 3} ${top cpu 3}
+${top name 4} $alignr ${top pid 4} ${top cpu 4}
+#${top name 5} $alignr ${top pid 5} ${top cpu 5}
+
+${font inconsolata:bold:size=9}NETWORK ${hr 2}
+${font inconsolata:medium:size=9}External IP: $alignr ${execi 600 wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'}
+${font inconsolata:normal:size=9}Local IP: $alignr ${addr wlan0}
+ESSID: $alignr ${wireless_essid wlan0}
+BSSID: $alignr${wireless_ap wlan0}
+Strength: $alignr ${wireless_link_qual_perc wlan0}%
+${downspeedgraph wlan0}
+DLS: ${downspeedf wlan0} kb/s $alignr total: ${totaldown wlan0}
+${upspeedgraph wlan0}
+ULS: ${upspeedf wlan0} kb/s $alignr total: ${totalup wlan0}

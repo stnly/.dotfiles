@@ -1,0 +1,41 @@
+background yes
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type override
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 200
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_left
+gap_x 5
+gap_y 50
+#no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+text_buffer_size 1024
+
+color1 red
+color2 gray
+##############################################
+#  Output
+##############################################
+TEXT
+${font inconsolata:bold:size=9}PACKAGES ${hr 2}
+${font inconsolata:medium:size=9}${execpi 3600 paconky /home/stan/src/conky/repos.paconky}
+#${font inconsolata:medium:size=9}${execpi 3600 paconky /home/stan/src/conky/aur.paconky}
+
+${font inconsolata:bold:size=9}EXCHANGE ${hr 2}
+${font inconsolata:medium:size=9}SGDxAUD:$alignr${execpi 3600 /home/stan/exchange.sh}
