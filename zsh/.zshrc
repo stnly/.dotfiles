@@ -39,6 +39,8 @@ alias wcc='gcc -Wall -Werror -O -o'
 #Find top largest folders
 alias dush='du -sm *|sort -n|tail'
 
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded'"
+
 #CSE account
 #alias cse='shht436@cse.unsw.edu.au'
 
@@ -69,6 +71,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Removed autojump plugin due to some issue with the sourcing.
 plugins=(
+    mix
     ruby
     chruby
     gem
@@ -76,8 +79,10 @@ plugins=(
     archlinux
     git
     heroku
-    zsh-syntax-highlighting
     vagrant
+    dirpersist
+    zsh_reload
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -85,31 +90,32 @@ source $ZSH/oh-my-zsh.sh
 unset GREP_OPTIONS
 
 # Customize to your needs...
-export PATH=/opt/android-ndk:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/home/stan/src/scripts:/home/stan/bin
+export PATH=/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/home/stan/src/scripts:/Users/stan/bin
 
 #jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+#export PATH="$HOME/.jenv/bin:$PATH"
+#eval "$(jenv init -)"
 
 #pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 #z
-. /usr/lib/z.sh
+#. /usr/lib/z.sh
+. `brew --prefix`/etc/profile.d/z.sh
 
 # RUBIES+=(~/.rbenv/versions/*)
-source /usr/share/chruby/chruby.sh
-source /usr/share/chruby/auto.sh
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 source /usr/local/share/gem_home/gem_home.sh
 
-RPS1="%{$fg_bold[red]%}p:%{$reset_color%}%{$fg[red]%}\$(pyenv version | sed -e 's/ (set.*$//')%{$reset_color%} %{$fg_bold[red]%}j:%{$reset_color%}%{$fg[red]%}\$(jenv version | sed -e 's/ (set.*$//')%{$reset_color%} %{$fg_bold[red]%}r:%{$reset_color%}%{$fg[red]%}\$(ruby -v|sed -e 's/(.*//' -e 's/ /-/')%{$reset_color%} $EPS1"
+RPS1="%{$fg_bold[red]%}r:%{$reset_color%}%{$fg[red]%}\$(ruby -v|sed -e 's/(.*//' -e 's/ /-/')%{$reset_color%} $EPS1"
 time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})[%*]%{$reset_color%}"
 time_disabled="%{$fg[green]%}%*%{$reset_color%}"
 time=$time_enabled
 GIT_PROMPT='$(git_prompt_info)'
-#archey
+archey -c
 PROMPT="${time} %{$fg[blue]%}%n@%m:%{$fg[white]%}%~
 $GIT_PROMPT%{$reset_color%}%(!.#.$)%{$reset_color%} "
 
