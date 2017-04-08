@@ -48,6 +48,8 @@ set nosmarttab
 set wrap
 set linebreak
 set bs=2
+" Remove default ~/.viminfo
+set viminfo=""
 " Set tabspace for markdown
 autocmd FileType markdown set sw=4
 autocmd FileType markdown set sts=4
